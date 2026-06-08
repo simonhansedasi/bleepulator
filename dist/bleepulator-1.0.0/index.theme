@@ -1,8 +1,0 @@
-[Sound Theme]
-Name=Bleepulator
-Comment=FM-synthesized droid beeps and whistles
-Inherits=freedesktop
-Directories=stereo
-
-[stereo]
-OutputProfile=stereo
