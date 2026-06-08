@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""R2-D2 system sound generator — FM synthesis, no external deps."""
+"""Bleepulator — FM-synthesized droid sound theme generator."""
 
 import numpy as np
 import wave
 import os
 
 SAMPLE_RATE = 44100
-OUT_DIR = os.path.expanduser("~/.local/share/sounds/r2d2/stereo")
+OUT_DIR = os.path.expanduser("~/.local/share/sounds/bleepulator/stereo")
 
 
 # ── primitives ──────────────────────────────────────────────────────────────

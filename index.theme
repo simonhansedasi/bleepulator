@@ -1,6 +1,6 @@
 [Sound Theme]
-Name=R2-D2
-Comment=Droid beeps and whistles
+Name=Bleepulator
+Comment=FM-synthesized droid beeps and whistles
 Inherits=freedesktop
 Directories=stereo
 

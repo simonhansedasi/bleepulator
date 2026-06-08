@@ -1,14 +1,14 @@
 #!/bin/bash
 # =============================================================================
-# R2-D2 Sound Theme Installer
+# Bleepulator Sound Theme Installer
 # =============================================================================
 #
 # WHAT THIS SCRIPT DOES
 # ---------------------
 # 1. Generates FM-synthesized droid sounds (via generate_sounds.py)
 # 2. Converts them to OGA format (required by GNOME's sound library)
-# 3. Installs them as the "r2d2" freedesktop sound theme
-# 4. Activates r2d2 as your GNOME sound theme via settings
+# 3. Installs them as the "bleepulator" freedesktop sound theme
+# 4. Activates bleepulator as your GNOME sound theme via settings
 # 5. Creates a resilience layer so sounds survive apt upgrades
 # 6. Patches the login sound to be extra-resilient
 #
@@ -27,11 +27,11 @@
 
 set -e  # exit immediately if any command fails
 
-R2D2_DIR="$HOME/.local/share/sounds/r2d2"
+BLEEPULATOR_DIR="$HOME/.local/share/sounds/bleepulator"
 YARU_DIR="$HOME/.local/share/sounds/Yaru"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-echo "=== R2-D2 Sound Theme Installer ==="
+echo "=== Bleepulator Sound Theme Installer ==="
 echo ""
 
 
@@ -56,7 +56,7 @@ fi
 # STEP 2: Generate the sound files
 # -----------------------------------------------------------------------------
 # generate_sounds.py synthesizes all sounds using FM math and writes WAV files
-# to $R2D2_DIR/stereo/. Edit that file to customize any sound.
+# to $BLEEPULATOR_DIR/stereo/. Edit that file to customize any sound.
 echo "[1/5] Generating sounds..."
 python3 "$SCRIPT_DIR/generate_sounds.py"
 
@@ -74,28 +74,28 @@ python3 "$SCRIPT_DIR/generate_sounds.py"
 #   -y                overwrite output without prompting
 #   -loglevel quiet   suppress ffmpeg's verbose output
 echo "[2/5] Converting WAV to OGA..."
-for wav in "$R2D2_DIR/stereo/"*.wav; do
+for wav in "$BLEEPULATOR_DIR/stereo/"*.wav; do
     ffmpeg -i "$wav" -c:a libvorbis -q:a 5 "${wav%.wav}.oga" -y -loglevel quiet
     rm "$wav"
 done
 
 
 # -----------------------------------------------------------------------------
-# STEP 4: Install r2d2 as a named sound theme
+# STEP 4: Install bleepulator as a named sound theme
 # -----------------------------------------------------------------------------
 # A freedesktop sound theme is just a directory + index.theme descriptor.
-# index.theme tells the system: "this is a theme called R2-D2, look for
+# index.theme tells the system: "this is a theme called Bleepulator, look for
 # sounds in the stereo/ subdir, fall back to freedesktop if a sound is missing."
 #
 # Theme search path (in order):
 #   ~/.local/share/sounds/     ← user local (we install here)
 #   /usr/share/sounds/         ← system-wide
-echo "[3/5] Installing r2d2 theme..."
-cp "$SCRIPT_DIR/index.theme" "$R2D2_DIR/index.theme"
+echo "[3/5] Installing bleepulator theme..."
+cp "$SCRIPT_DIR/index.theme" "$BLEEPULATOR_DIR/index.theme"
 
 # Activate via GNOME settings
 if command -v gsettings &>/dev/null; then
-    gsettings set org.gnome.desktop.sound theme-name 'r2d2'
+    gsettings set org.gnome.desktop.sound theme-name 'bleepulator'
     gsettings set org.gnome.desktop.sound event-sounds true
 fi
 
@@ -109,7 +109,7 @@ fi
 #   libcanberra reads GTK settings to find the theme name, and system settings
 #   take priority over user settings for this property. So when any GTK app
 #   plays a sound event (dialog, notification, battery warning, etc.), it looks
-#   up sounds in the "Yaru" theme — ignoring your gsettings and r2d2.
+#   up sounds in the "Yaru" theme — ignoring your gsettings and bleepulator.
 #   apt upgrade can re-write /etc/gtk-3.0/settings.ini at any time.
 #
 # THE FIX:
@@ -117,13 +117,13 @@ fi
 #     1. ~/.local/share/sounds/Yaru/    ← checked FIRST
 #     2. /usr/share/sounds/Yaru/        ← system (managed by apt)
 #
-#   By creating ~/.local/share/sounds/Yaru/ with symlinks to our r2d2 sounds,
+#   By creating ~/.local/share/sounds/Yaru/ with symlinks to our bleepulator sounds,
 #   libcanberra finds our files first — for every sound event — regardless of
 #   what /etc/gtk-3.0/settings.ini says. apt never touches ~/.local/share/,
 #   so this survives all future upgrades.
 #
 #   The symlinks mean: edit generate_sounds.py → re-run install.sh → both
-#   the r2d2 theme and the Yaru override update automatically.
+#   the bleepulator theme and the Yaru override update automatically.
 echo "[4/5] Installing resilience layer (local Yaru override)..."
 mkdir -p "$YARU_DIR/stereo"
 
@@ -138,10 +138,10 @@ Directories=stereo
 OutputProfile=stereo
 EOF
 
-# Symlink every r2d2 sound into the local Yaru override.
+# Symlink every bleepulator sound into the local Yaru override.
 # -s  create a symbolic link
 # -f  overwrite if it already exists (safe to re-run)
-for oga in "$R2D2_DIR/stereo/"*.oga; do
+for oga in "$BLEEPULATOR_DIR/stereo/"*.oga; do
     ln -sf "$oga" "$YARU_DIR/stereo/$(basename "$oga")"
 done
 
@@ -167,7 +167,7 @@ cat > "$HOME/.config/autostart/libcanberra-login-sound.desktop" << EOF
 Type=Application
 Name=GNOME Login Sound
 Comment=Plays a sound whenever you log in
-Exec=/usr/bin/canberra-gtk-play --file="$R2D2_DIR/stereo/desktop-login.oga" --description="GNOME Login"
+Exec=/usr/bin/canberra-gtk-play --file="$BLEEPULATOR_DIR/stereo/desktop-login.oga" --description="GNOME Login"
 OnlyShowIn=GNOME;Unity;
 AutostartCondition=GSettings org.gnome.desktop.sound event-sounds
 X-GNOME-Autostart-Phase=Application
@@ -183,14 +183,14 @@ EOF
 echo ""
 echo "All done."
 echo ""
-echo "  r2d2 theme:   $R2D2_DIR/stereo/"
+echo "  bleepulator theme:   $BLEEPULATOR_DIR/stereo/"
 echo "  Yaru overlay: $YARU_DIR/stereo/ ($(ls "$YARU_DIR/stereo/" | wc -l) symlinks)"
 echo ""
 echo "Log out and back in for the login sound to take effect."
 echo "All other sounds are active immediately."
 echo ""
 echo "To preview a sound:"
-echo "  paplay $R2D2_DIR/stereo/desktop-login.oga"
+echo "  paplay $BLEEPULATOR_DIR/stereo/desktop-login.oga"
 echo "  canberra-gtk-play --id=\"dialog-error\""
 echo ""
 echo "To customize: edit generate_sounds.py, then re-run this script."
@@ -199,7 +199,7 @@ echo "To customize: edit generate_sounds.py, then re-run this script."
 # =============================================================================
 # MANUAL UNINSTALL
 # =============================================================================
-# rm -rf ~/.local/share/sounds/r2d2
+# rm -rf ~/.local/share/sounds/bleepulator
 # rm -rf ~/.local/share/sounds/Yaru
 # rm -f  ~/.config/autostart/libcanberra-login-sound.desktop
 # gsettings reset org.gnome.desktop.sound theme-name

@@ -1,6 +1,6 @@
-# r2d2
+# bleepulator
 
-Replaces your Linux system sounds with R2-D2-style droid beeps. Fully synthesized via FM math — no sampled audio, no copyright issues.
+Replaces your Linux system sounds with FM-synthesized droid beeps. Fully synthesized via FM math — no sampled audio, no copyright issues.
 
 ## Quick start
 
@@ -29,7 +29,7 @@ The `chirp(duration, freq_start, freq_end, mf=modulator_freq, md=modulator_depth
 
 To preview without logging out:
 ```bash
-paplay ~/.local/share/sounds/r2d2/stereo/dialog-error.oga
+paplay ~/.local/share/sounds/bleepulator/stereo/dialog-error.oga
 canberra-gtk-play --id="dialog-error"
 ```
 
@@ -47,7 +47,7 @@ canberra-gtk-play --id="dialog-error"
 | window-attention-active | four rapid ascending pings |
 | complete | triumphant arpeggio |
 | trash-empty | short downward bloop |
-| desktop-login | full R2-D2 startup sequence |
+| desktop-login | full Bleepulator startup sequence |
 | desktop-logout | tired winding-down sequence |
 | window-close / minimize / maximize | short blips |
 
@@ -77,7 +77,7 @@ When a GTK app plays a sound (dialog opens, battery gets low, etc.), it calls li
    - `/usr/share/sounds/<theme>/`       ← system, managed by apt
 3. Plays the matching `.oga` file
 
-The theme is activated via `gsettings set org.gnome.desktop.sound theme-name 'r2d2'`.
+The theme is activated via `gsettings set org.gnome.desktop.sound theme-name 'bleepulator'`.
 
 ### Why apt upgrades can break sound themes
 
@@ -87,11 +87,11 @@ Ubuntu stores system-wide GTK defaults in `/etc/gtk-3.0/settings.ini`. That file
 gtk-sound-theme-name = Yaru
 ```
 
-`apt upgrade` can rewrite this file at any time. When it does, GTK's system settings override your per-user settings for `gtk-sound-theme-name`, so libcanberra starts looking up sounds in the Yaru theme instead of r2d2 — for every sound event, not just login.
+`apt upgrade` can rewrite this file at any time. When it does, GTK's system settings override your per-user settings for `gtk-sound-theme-name`, so libcanberra starts looking up sounds in the Yaru theme instead of bleepulator — for every sound event, not just login.
 
 ### The resilience fix
 
-`install.sh` installs all r2d2 sounds as symlinks into `~/.local/share/sounds/Yaru/stereo/`. Since libcanberra checks the user-local path first, our files are found before the system Yaru directory — regardless of what `/etc/gtk-3.0/settings.ini` says:
+`install.sh` installs all bleepulator sounds as symlinks into `~/.local/share/sounds/Yaru/stereo/`. Since libcanberra checks the user-local path first, our files are found before the system Yaru directory — regardless of what `/etc/gtk-3.0/settings.ini` says:
 
 ```
 libcanberra looks for "Yaru/dialog-error.oga"
@@ -99,20 +99,20 @@ libcanberra looks for "Yaru/dialog-error.oga"
   → never reaches /usr/share/sounds/Yaru/                      (skipped)
 ```
 
-`~/.local/share/` is never touched by apt, so this survives all future upgrades. The symlinks point back to the r2d2 directory, so re-running `install.sh` after editing sounds updates both themes automatically.
+`~/.local/share/` is never touched by apt, so this survives all future upgrades. The symlinks point back to the bleepulator directory, so re-running `install.sh` after editing sounds updates both themes automatically.
 
 The login sound gets a second layer: its autostart `.desktop` file is overridden in `~/.config/autostart/` to play the file path directly, completely bypassing theme lookup.
 
 ## GDM login screen (optional, system-wide)
 
-The above covers everything in your user session. If you also want the login *screen* to use r2d2 sounds (GDM runs as a separate system user with its own settings):
+The above covers everything in your user session. If you also want the login *screen* to use bleepulator sounds (GDM runs as a separate system user with its own settings):
 
 ```bash
-sudo cp -r ~/.local/share/sounds/r2d2 /usr/share/sounds/r2d2
+sudo cp -r ~/.local/share/sounds/bleepulator /usr/share/sounds/bleepulator
 sudo mkdir -p /etc/dconf/db/gdm.d
 sudo tee /etc/dconf/db/gdm.d/00-sound << 'EOF'
 [org/gnome/desktop/sound]
-theme-name='r2d2'
+theme-name='bleepulator'
 event-sounds=true
 EOF
 sudo dconf update
@@ -147,7 +147,7 @@ cat ~/.config/autostart/libcanberra-login-sound.desktop
 ## Uninstall
 
 ```bash
-rm -rf ~/.local/share/sounds/r2d2
+rm -rf ~/.local/share/sounds/bleepulator
 rm -rf ~/.local/share/sounds/Yaru
 rm -f  ~/.config/autostart/libcanberra-login-sound.desktop
 gsettings reset org.gnome.desktop.sound theme-name
