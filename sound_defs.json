@@ -1,0 +1,507 @@
+{
+  "bell": {
+    "description": "Short upward zap \u2014 terminal bell",
+    "segments": [
+      {
+        "type": "chirp",
+        "dur": 0.15,
+        "f0": 1200,
+        "f1": 2600,
+        "mf": 45,
+        "md": 0.5,
+        "amp": 0.8
+      }
+    ]
+  },
+  "error": {
+    "description": "Worried descending two-part warble",
+    "segments": [
+      {
+        "type": "chirp",
+        "dur": 0.3,
+        "f0": 1800,
+        "f1": 600,
+        "mf": 25,
+        "md": 1.3,
+        "amp": 0.75
+      },
+      {
+        "type": "gap",
+        "dur": 0.06
+      },
+      {
+        "type": "chirp",
+        "dur": 0.4,
+        "f0": 1100,
+        "f1": 350,
+        "mf": 18,
+        "md": 1.8,
+        "amp": 0.65
+      }
+    ]
+  },
+  "warning": {
+    "description": "Three rapid concerned staccato beeps",
+    "segments": [
+      {
+        "type": "chirp",
+        "dur": 0.1,
+        "f0": 1500,
+        "f1": 1500,
+        "mf": 30,
+        "md": 0.5,
+        "amp": 0.8
+      },
+      {
+        "type": "gap",
+        "dur": 0.04
+      },
+      {
+        "type": "chirp",
+        "dur": 0.1,
+        "f0": 1750,
+        "f1": 1750,
+        "mf": 35,
+        "md": 0.5,
+        "amp": 0.8
+      },
+      {
+        "type": "gap",
+        "dur": 0.04
+      },
+      {
+        "type": "chirp",
+        "dur": 0.14,
+        "f0": 1300,
+        "f1": 1300,
+        "mf": 25,
+        "md": 0.7,
+        "amp": 0.8
+      }
+    ]
+  },
+  "info": {
+    "description": "Cheerful two-step ascending chirp",
+    "segments": [
+      {
+        "type": "chirp",
+        "dur": 0.14,
+        "f0": 900,
+        "f1": 1700,
+        "mf": 30,
+        "md": 0.3,
+        "amp": 0.8
+      },
+      {
+        "type": "gap",
+        "dur": 0.03
+      },
+      {
+        "type": "chirp",
+        "dur": 0.2,
+        "f0": 1700,
+        "f1": 2500,
+        "mf": 42,
+        "md": 0.45,
+        "amp": 0.8
+      }
+    ]
+  },
+  "message": {
+    "description": "Excited double-chirp \u2014 new message",
+    "segments": [
+      {
+        "type": "chirp",
+        "dur": 0.11,
+        "f0": 1400,
+        "f1": 2300,
+        "mf": 48,
+        "md": 0.55,
+        "amp": 0.8
+      },
+      {
+        "type": "gap",
+        "dur": 0.03
+      },
+      {
+        "type": "chirp",
+        "dur": 0.1,
+        "f0": 2100,
+        "f1": 2900,
+        "mf": 55,
+        "md": 0.4,
+        "amp": 0.8
+      }
+    ]
+  },
+  "volume": {
+    "description": "Quick rising tone \u2014 volume feedback",
+    "segments": [
+      {
+        "type": "chirp",
+        "dur": 0.11,
+        "f0": 700,
+        "f1": 1500,
+        "mf": 20,
+        "md": 0.2,
+        "amp": 0.65
+      }
+    ]
+  },
+  "battery_low": {
+    "description": "Slow mournful descending wail",
+    "segments": [
+      {
+        "type": "chirp",
+        "dur": 0.55,
+        "f0": 1300,
+        "f1": 500,
+        "mf": 14,
+        "md": 2.2,
+        "amp": 0.7
+      },
+      {
+        "type": "gap",
+        "dur": 0.12
+      },
+      {
+        "type": "chirp",
+        "dur": 0.65,
+        "f0": 950,
+        "f1": 280,
+        "mf": 11,
+        "md": 2.8,
+        "amp": 0.6
+      }
+    ]
+  },
+  "attention": {
+    "description": "Four rapid ascending pings \u2014 needs attention",
+    "segments": [
+      {
+        "type": "chirp",
+        "dur": 0.09,
+        "f0": 800,
+        "f1": 1390,
+        "mf": 40,
+        "md": 0.55,
+        "amp": 0.8
+      },
+      {
+        "type": "gap",
+        "dur": 0.04
+      },
+      {
+        "type": "chirp",
+        "dur": 0.09,
+        "f0": 1650,
+        "f1": 870,
+        "mf": 46,
+        "md": 0.55,
+        "amp": 0.8
+      },
+      {
+        "type": "gap",
+        "dur": 0.06
+      },
+      {
+        "type": "chirp",
+        "dur": 0.09,
+        "f0": 1340,
+        "f1": 1690,
+        "mf": 52,
+        "md": 0.55,
+        "amp": 0.8
+      },
+      {
+        "type": "gap",
+        "dur": 0.03
+      },
+      {
+        "type": "chirp",
+        "dur": 0.09,
+        "f0": 2000,
+        "f1": 590,
+        "mf": 58,
+        "md": 0.55,
+        "amp": 0.8
+      },
+      {
+        "type": "gap",
+        "dur": 0.03
+      }
+    ]
+  },
+  "complete": {
+    "description": "Triumphant ascending arpeggio \u2014 operation done",
+    "segments": [
+      {
+        "type": "chirp",
+        "dur": 0.14,
+        "f0": 500,
+        "f1": 800,
+        "mf": 28,
+        "md": 0.25,
+        "amp": 0.8
+      },
+      {
+        "type": "gap",
+        "dur": 0.02
+      },
+      {
+        "type": "chirp",
+        "dur": 0.14,
+        "f0": 800,
+        "f1": 1200,
+        "mf": 33,
+        "md": 0.35,
+        "amp": 0.8
+      },
+      {
+        "type": "gap",
+        "dur": 0.02
+      },
+      {
+        "type": "chirp",
+        "dur": 0.14,
+        "f0": 1200,
+        "f1": 1700,
+        "mf": 38,
+        "md": 0.45,
+        "amp": 0.8
+      },
+      {
+        "type": "gap",
+        "dur": 0.02
+      },
+      {
+        "type": "chirp",
+        "dur": 0.14,
+        "f0": 1700,
+        "f1": 2600,
+        "mf": 43,
+        "md": 0.55,
+        "amp": 0.8
+      },
+      {
+        "type": "gap",
+        "dur": 0.02
+      }
+    ]
+  },
+  "trash": {
+    "description": "Short downward bloop",
+    "segments": [
+      {
+        "type": "chirp",
+        "dur": 0.22,
+        "f0": 1700,
+        "f1": 380,
+        "mf": 22,
+        "md": 0.9,
+        "amp": 0.7
+      }
+    ]
+  },
+  "login": {
+    "description": "Full excited startup sequence",
+    "segments": [
+      {
+        "type": "chirp",
+        "dur": 0.15,
+        "f0": 800,
+        "f1": 2100,
+        "mf": 40,
+        "md": 0.9,
+        "amp": 0.8
+      },
+      {
+        "type": "gap",
+        "dur": 0.04
+      },
+      {
+        "type": "chirp",
+        "dur": 0.1,
+        "f0": 2100,
+        "f1": 1500,
+        "mf": 50,
+        "md": 0.6,
+        "amp": 0.8
+      },
+      {
+        "type": "gap",
+        "dur": 0.03
+      },
+      {
+        "type": "chirp",
+        "dur": 0.2,
+        "f0": 1000,
+        "f1": 2700,
+        "mf": 36,
+        "md": 1.1,
+        "amp": 0.8
+      },
+      {
+        "type": "gap",
+        "dur": 0.05
+      },
+      {
+        "type": "chirp",
+        "dur": 0.11,
+        "f0": 2300,
+        "f1": 2300,
+        "mf": 65,
+        "md": 0.4,
+        "amp": 0.8
+      },
+      {
+        "type": "gap",
+        "dur": 0.03
+      },
+      {
+        "type": "chirp",
+        "dur": 0.22,
+        "f0": 1200,
+        "f1": 750,
+        "mf": 28,
+        "md": 1.3,
+        "amp": 0.8
+      },
+      {
+        "type": "gap",
+        "dur": 0.04
+      },
+      {
+        "type": "chirp",
+        "dur": 0.3,
+        "f0": 550,
+        "f1": 2400,
+        "mf": 44,
+        "md": 1.0,
+        "amp": 0.8
+      }
+    ]
+  },
+  "logout": {
+    "description": "Tired winding-down sequence",
+    "segments": [
+      {
+        "type": "chirp",
+        "dur": 0.22,
+        "f0": 1900,
+        "f1": 900,
+        "mf": 24,
+        "md": 1.1,
+        "amp": 0.8
+      },
+      {
+        "type": "gap",
+        "dur": 0.07
+      },
+      {
+        "type": "chirp",
+        "dur": 0.28,
+        "f0": 1300,
+        "f1": 600,
+        "mf": 19,
+        "md": 1.4,
+        "amp": 0.8
+      },
+      {
+        "type": "gap",
+        "dur": 0.09
+      },
+      {
+        "type": "chirp",
+        "dur": 0.16,
+        "f0": 800,
+        "f1": 800,
+        "mf": 14,
+        "md": 0.9,
+        "amp": 0.65
+      },
+      {
+        "type": "gap",
+        "dur": 0.06
+      },
+      {
+        "type": "chirp",
+        "dur": 0.45,
+        "f0": 650,
+        "f1": 180,
+        "mf": 13,
+        "md": 2.2,
+        "amp": 0.55
+      }
+    ]
+  },
+  "power_off": {
+    "description": "Ominous final descending sweep",
+    "segments": [
+      {
+        "type": "chirp",
+        "dur": 0.2,
+        "f0": 1600,
+        "f1": 800,
+        "mf": 20,
+        "md": 1.0,
+        "amp": 0.8
+      },
+      {
+        "type": "gap",
+        "dur": 0.08
+      },
+      {
+        "type": "chirp",
+        "dur": 0.6,
+        "f0": 800,
+        "f1": 150,
+        "mf": 10,
+        "md": 3.0,
+        "amp": 0.5
+      }
+    ]
+  },
+  "window_close": {
+    "description": "Short soft downward blip",
+    "segments": [
+      {
+        "type": "chirp",
+        "dur": 0.12,
+        "f0": 1100,
+        "f1": 600,
+        "mf": 18,
+        "md": 0.4,
+        "amp": 0.6
+      }
+    ]
+  },
+  "minimize": {
+    "description": "Tiny downward zip",
+    "segments": [
+      {
+        "type": "chirp",
+        "dur": 0.08,
+        "f0": 1400,
+        "f1": 800,
+        "mf": 25,
+        "md": 0.3,
+        "amp": 0.55
+      }
+    ]
+  },
+  "maximize": {
+    "description": "Tiny upward zip",
+    "segments": [
+      {
+        "type": "chirp",
+        "dur": 0.08,
+        "f0": 800,
+        "f1": 1600,
+        "mf": 25,
+        "md": 0.3,
+        "amp": 0.55
+      }
+    ]
+  }
+}

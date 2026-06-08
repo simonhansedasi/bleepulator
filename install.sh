@@ -193,7 +193,12 @@ echo "To preview a sound:"
 echo "  paplay $BLEEPULATOR_DIR/stereo/desktop-login.oga"
 echo "  canberra-gtk-play --id=\"dialog-error\""
 echo ""
-echo "To customize: edit generate_sounds.py, then re-run this script."
+echo "To customize sounds with a visual editor:"
+echo "  pip install flask"
+echo "  python3 editor/app.py"
+echo "  then open http://localhost:5000 in your browser"
+echo ""
+echo "To customize manually: edit sound_defs.json or generate_sounds.py, then re-run this script."
 
 
 # =============================================================================
