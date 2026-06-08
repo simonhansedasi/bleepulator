@@ -1,0 +1,8 @@
+[Sound Theme]
+Name=R2-D2
+Comment=Droid beeps and whistles
+Inherits=freedesktop
+Directories=stereo
+
+[stereo]
+OutputProfile=stereo
