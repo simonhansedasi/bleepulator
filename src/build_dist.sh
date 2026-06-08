@@ -2,9 +2,9 @@
 # =============================================================================
 # Bleepulator distribution builder
 #
-# Generates all OGA files from source, then packages them into:
-#   dist/bleepulator_<VERSION>_all.deb   — double-click installer, no deps
-#   dist/bleepulator-<VERSION>.tar.gz    — manual install / GNOME-Look
+# Generates all OGA files from source, then packages them into the repo root:
+#   bleepulator_<VERSION>_all.deb   — double-click installer, no deps
+#   bleepulator-<VERSION>.tar.gz    — manual install / GNOME-Look
 #
 # Usage:
 #   bash build_dist.sh [VERSION]         # default: 1.0.0
@@ -16,13 +16,14 @@
 set -e
 
 VERSION="${1:-1.0.0}"
-MAINTAINER="Simon Hans Edasi <woses21@gmail.com>"
+MAINTAINER="Simon Hans Edasi <simonhansedasi@gmail.com>"
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-DIST_DIR="$SCRIPT_DIR/dist"
-SOUNDS_STAGE="$DIST_DIR/_sounds"           # shared OGA staging area
-TAR_STAGE="$DIST_DIR/bleepulator-$VERSION" # tarball tree
-DEB_STAGE="$DIST_DIR/_deb"                 # .deb tree
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+DIST_DIR="$REPO_ROOT"
+SOUNDS_STAGE="$SCRIPT_DIR/_sounds_stage"            # shared OGA staging area (inside src/, cleaned up)
+TAR_STAGE="$SCRIPT_DIR/bleepulator-$VERSION"        # tarball tree (inside src/, cleaned up)
+DEB_STAGE="$SCRIPT_DIR/_deb_stage"                  # .deb tree (inside src/, cleaned up)
 
 echo "=== Bleepulator dist builder — v$VERSION ==="
 echo ""
@@ -224,7 +225,7 @@ fi
 POSTRM
 chmod 755 "$DEB_STAGE/DEBIAN/postrm"
 
-DEB_OUT="$DIST_DIR/bleepulator_${VERSION}_all.deb"
+DEB_OUT="$REPO_ROOT/bleepulator_${VERSION}_all.deb"
 dpkg-deb --build "$DEB_STAGE" "$DEB_OUT"
 echo "  $DEB_OUT"
 
@@ -304,8 +305,8 @@ echo "  gsettings reset org.gnome.desktop.sound theme-name"
 TARINSTALL
 chmod +x "$TAR_STAGE/install.sh"
 
-TAR_OUT="$DIST_DIR/bleepulator-$VERSION.tar.gz"
-cd "$DIST_DIR"
+TAR_OUT="$REPO_ROOT/bleepulator-$VERSION.tar.gz"
+cd "$SCRIPT_DIR"
 tar -czf "$TAR_OUT" "bleepulator-$VERSION/"
 echo "  $TAR_OUT"
 
@@ -313,7 +314,7 @@ echo "  $TAR_OUT"
 # -----------------------------------------------------------------------------
 # Cleanup staging dirs
 # -----------------------------------------------------------------------------
-rm -rf "$SOUNDS_STAGE" "$DEB_STAGE" "$TAR_STAGE"
+rm -rf "$SOUNDS_STAGE" "$DEB_STAGE" "$TAR_STAGE"   # all inside src/, safe to nuke
 
 
 echo ""
