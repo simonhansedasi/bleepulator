@@ -15,7 +15,7 @@
 
 set -e
 
-VERSION="${1:-1.0.0}"
+VERSION="${1:-1.0.1}"
 MAINTAINER="Simon Hans Edasi <simonhansedasi@gmail.com>"
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -87,7 +87,7 @@ mkdir -p "$DEB_STAGE/usr/share/doc/bleepulator"
 
 cp "$SOUNDS_STAGE/"*.oga     "$DEB_STAGE/usr/share/sounds/bleepulator/stereo/"
 cp "$SCRIPT_DIR/index.theme" "$DEB_STAGE/usr/share/sounds/bleepulator/index.theme"
-cp "$SCRIPT_DIR/README_DIST.md" "$DEB_STAGE/usr/share/doc/bleepulator/README"
+cp "$SCRIPT_DIR/../README.md" "$DEB_STAGE/usr/share/doc/bleepulator/README"
 
 # DEBIAN/control
 cat > "$DEB_STAGE/DEBIAN/control" << EOF
@@ -238,7 +238,7 @@ echo "[4/4] Building tarball..."
 mkdir -p "$TAR_STAGE/stereo"
 cp "$SOUNDS_STAGE/"*.oga     "$TAR_STAGE/stereo/"
 cp "$SCRIPT_DIR/index.theme" "$TAR_STAGE/index.theme"
-cp "$SCRIPT_DIR/README_DIST.md" "$TAR_STAGE/README.md"
+cp "$SCRIPT_DIR/../README.md" "$TAR_STAGE/README.md"
 
 # Tarball install.sh — no Python, numpy, or ffmpeg required
 cat > "$TAR_STAGE/install.sh" << 'TARINSTALL'

@@ -8,12 +8,12 @@ copyright issues, survives system updates.
 
 ### Ubuntu / Debian (recommended)
 
-Double-click `bleepulator_1.0.1_all.deb`.
+Double-click `bleepulator_1.0.0_all.deb`.
 
 Or from the terminal:
 
 ```
-sudo dpkg -i bleepulator_1.0.1_all.deb
+sudo dpkg -i bleepulator_1.0.0_all.deb
 ```
 
 Log out and back in. Done.
@@ -21,8 +21,8 @@ Log out and back in. Done.
 ### Other distros (manual)
 
 ```
-tar xzf bleepulator-1.0.1.tar.gz
-bash bleepulator-1.0.1/install.sh
+tar xzf bleepulator-1.0.0.tar.gz
+bash bleepulator-1.0.0/install.sh
 ```
 
 Log out and back in for the login sound to take effect. All other sounds are
