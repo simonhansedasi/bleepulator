@@ -35,21 +35,19 @@ canberra-gtk-play --id="dialog-error"
 
 ## Building a release
 
-`build_dist.sh` pre-generates all sounds and packages them into a tarball that end-users can install without Python, numpy, or ffmpeg:
+`build_dist.sh` pre-generates all OGA files from source and produces two artifacts — no Python, numpy, or ffmpeg required by end-users:
 
 ```bash
 bash build_dist.sh [VERSION]   # default: 1.0.0
+# → dist/bleepulator_1.0.0_all.deb
 # → dist/bleepulator-1.0.0.tar.gz
 ```
 
-The tarball contains pre-built `.oga` files and a self-contained `install.sh`. End-user installation is:
+The `.deb` is the primary deliverable. Double-clicking it in Ubuntu/Debian installs the theme and activates it automatically. The tarball is for GNOME-Look and non-Debian distros — it contains the pre-built sounds and a self-contained `install.sh`.
 
-```bash
-tar xzf bleepulator-1.0.0.tar.gz
-bash bleepulator-1.0.0/install.sh
-```
+`README_DIST.md` is the end-user README that ships inside both packages (no build instructions, no dependencies, just install and uninstall steps).
 
-Upload the tarball to [GitHub Releases](https://github.com) and [GNOME-Look.org](https://www.gnome-look.org) (Sound Themes category) for distribution.
+Build dependencies: `sudo apt install ffmpeg python3-numpy dpkg`
 
 ## Sound events
 
